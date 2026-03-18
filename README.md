@@ -38,24 +38,26 @@ wE
   - 對應每條邊的權重
 
 ### 檔案目錄結構
+```
 .
 ├── data/
-│       testGraph
+│   ├── testGraph
 │
 ├── include/
-│       graph.hpp
-│       heap.hpp
-│       kruskal.hpp
-│       prim.hpp
-│       union_find.hpp
+│   ├── graph.hpp
+│   ├── heap.hpp
+│   ├── kruskal.hpp
+│   ├── prim.hpp
+│   ├── union_find.hpp
 │
 ├── src/
-│       graph.cpp
-│       heap.cpp
-│       kruskal.cpp
-│       main.cpp
-│       prim.cpp
-│       union_find.cpp
+│   ├── graph.cpp
+│   ├── heap.cpp
+│   ├── kruskal.cpp
+│   ├── main.cpp
+│   ├── prim.cpp
+│   ├── union_find.cpp
+```
 
 ### Kruskal 演算法
 
