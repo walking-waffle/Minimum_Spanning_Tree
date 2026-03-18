@@ -2,4 +2,4 @@
 #include <vector>
 using namespace std;
 
-vector<int> prim(const vector<int>& OA, const vector<int>& EA, const vector<int>& data);
+vector<Edge> prim( vector<int>& OA, vector<int>& EA, vector<int>& data );

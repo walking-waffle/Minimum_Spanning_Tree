@@ -1,8 +1,9 @@
+#include "../include/graph.hpp"
 #include "../include/prim.hpp"
 #include "../include/heap.hpp"
 #include <climits>
 
-vector<int> prim( const vector<int>& OA, const vector<int>& EA, const vector<int>& data ) {
+vector<Edge> prim( vector<int>& OA, vector<int>& EA, vector<int>& data ) {
     int V = OA.size() - 1;
     vector<int> key( V, INT_MAX );
     vector<int> parent( V, -1 );
@@ -25,6 +26,7 @@ vector<int> prim( const vector<int>& OA, const vector<int>& EA, const vector<int
         for ( int i = OA[u]; i < OA[u + 1]; i++ ) {
             int v = EA[i];
             int w = data[i];
+
             if ( minHeap.isInMinHeap(v) && w < key[v] ) {
                 key[v] = w;
                 parent[v] = u;
@@ -33,5 +35,11 @@ vector<int> prim( const vector<int>& OA, const vector<int>& EA, const vector<int
         } // for
     } // while
 
-    return key;
+    vector<Edge> mst;
+    for ( int v = 1; v < V; v++ ) {
+        if ( parent[v] != -1 )
+            mst.push_back( {parent[v], v, key[v]} );
+    } // for
+
+    return mst;
 } // prim

@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     auto t4 = chrono::high_resolution_clock::now();
 
     int sumP = 0;
-    for ( int k : mstP ) sumP += k;
+    for ( Edge &e : mstP ) sumP += e.weight;
 
     cout << "Kruskal: " << sumK << endl;
     cout << "Prim: " << sumP << endl;
