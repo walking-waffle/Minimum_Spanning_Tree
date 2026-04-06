@@ -10,23 +10,23 @@ g++ -std=c++17 src/*.cpp -Iinclude -o main
 ./main ../data/filename
 
 ### 輸入圖形格式
-圖的儲存方式採用 CSR（Compressed Sparse Row）格式
-檔案內容開頭為：
-WeightedAdjacencyGraph
-offset array size (V)
-edge array size (E)
-o1
-o2
-.....
-oV
-e1
-e2
-.....
-eE
-w1
-w2
-.....
-wE
+圖的儲存方式採用 CSR（Compressed Sparse Row）格式  
+檔案內容開頭為：  
+WeightedAdjacencyGraph  
+offset array size (V)  
+edge array size (E)  
+o1  
+o2  
+.....  
+oV  
+e1  
+e2  
+.....  
+eE  
+w1  
+w2  
+.....  
+wE  
 
 - `WeightedAdjacencyGraph`：檔案格式標記（字串）
 - `offset array (OA)`：
@@ -60,19 +60,34 @@ wE
 ```
 
 ### Kruskal 演算法
+策略：每次選擇「最小權重」且「不形成 cycle」的邊
 
-1. 將所有邊依權重排序
+##### 步驟
+1. 將所有邊依照權重 由小到大排序
+2. 初始化空的 MST
+3. 依序選擇最小邊
+4. 若加入該邊 不會形成 cycle → 加入 MST
+5. 重複直到 MST 有 V − 1 條邊
 
-2. 依序選擇最小邊
+##### Cycle 判斷方法
 
-3. 使用 Union-Find 檢查是否形成 cycle
+Disjoint Set（Union-Find）
 
-4. 若不形成則加入 MST，重複以上 2.~4. 直到所有節點皆加入集合
+find(x) → 找集合 root
+union(x,y) → 合併集合
+
+如果：
+find(u) == find(v)
+代表加入會形成 cycle
 
 ### Prim 演算法
+策略：從一個節點開始，逐步擴展最小生成樹
 
-1. 從起點（0）開始
+##### 步驟
+1. 選擇一個起點，將他加入 MST
+2. 找出所有「從 MST 內部連到外部」的邊。 例如：(u, v). u ∈ MST, v ∉ MST
+3. 從這些邊中選擇權重最小的邊，將該邊加入 MST
+4. 重複 2 和 3 直到所有節點加入
 
-2. 使用 Min Heap 選擇最小權重邊
-
-3. 逐步擴展生成樹
+##### 找出權重最小的方法
+使用 min heap 實作 Priority Queue
